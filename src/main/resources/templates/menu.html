@@ -7,9 +7,35 @@
 </head>
 <body>
 <h1>My Super Fancy Spa</h1>
-<div id = "clientProfile">
+<div id = clientProfile>
+    <h2>My Profile</h2>
+    <p th:text = "${name}"></p>
+    <p th:text = "${#strings.capitalize(skintype)}"></p>
+    <p th:text = "${#strings.capitalize(manipedi)}"></p>
 </div>
 <div id = "servicesMenu">
+    <h1>Menu Of Available Services</h1>
+    <br>
+    <h2>Facial Treatments</h2>
+    <p>The Facial Treatments Below Are Recommended<br>
+        By Our Esthetician For Your Given skin Type</p>
+    <th:Block>
+        <table>
+            <tr th:each="facial : ${appropriateFacials}">
+                <td th:text="${facial}"></td>
+            </tr>
+        </table>
+    </th:Block>
+</div>
+<div id="manipedi">
+    <th:block th:if="${manipedi == 'manicure'}">
+        <h3 th:text = "${#strings.capitalize(manipedi)}"></h3>
+        <p th:replace = "fragments :: manicureDescription"></p>
+    </th:Block>
+    <th:block th:if="${manipedi == 'pedicure'}">
+        <h3 th:text="${#strings.capitalize(manipedi)}"></h3>
+        <p th:replace="fragments :: pedicureDescription"></p>
+    </th:block>
 </div>
 </body>
 </html>
